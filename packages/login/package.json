@@ -9,6 +9,7 @@
     "prepublish": "npm run clean && npm run compile"
   },
   "devDependencies": {
+    "styled-components": "^2.2.3",
     "tocco-test-util": ">0.1.0",
     "tocco-theme": ">0.1.0",
     "tocco-ui": ">0.1.0",

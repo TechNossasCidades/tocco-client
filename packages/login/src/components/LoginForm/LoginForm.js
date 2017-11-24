@@ -3,6 +3,21 @@ import React, {Component} from 'react'
 import {FormattedMessage, intlShape} from 'react-intl'
 import {Pages} from '../../types/Pages'
 import {Button} from 'tocco-ui'
+import styled from 'styled-components'
+
+const Title = styled.h3`
+  && {
+    font-size: ${props => props.theme.fontSize || props.themeFallback.fontSize};
+    color: ${props => props.theme.colorPrimary || props.themeFallback.colorPrimary};
+  }
+`
+
+Title.defaultProps = {
+  themeFallback: {
+    fontSize: '3rem',
+    colorPrimary: 'fuchsia'
+  }
+}
 
 export class LoginForm extends Component {
   handleSubmit(e) {
@@ -24,7 +39,7 @@ export class LoginForm extends Component {
         {
           this.props.showTitle
           && <div>
-          <h1><FormattedMessage id="client.login.form.title"/></h1>
+          <Title><FormattedMessage id="client.login.form.title"/></Title>
           <p><FormattedMessage id="client.login.form.introduction"/></p>
         </div>
         }

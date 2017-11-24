@@ -225,6 +225,10 @@ webpackConfig.module.rules = [
           'tocco-test-util': {
             'transform': 'tocco-test-util/src/${member}', // eslint-disable-line no-template-curly-in-string
             'preventFullImport': true
+          },
+          'tocco-theme': {
+            'transform': 'tocco-theme/src/${member}', // eslint-disable-line no-template-curly-in-string
+            'preventFullImport': true
           }
         }],
         'transform-runtime',
