@@ -103,217 +103,167 @@ class Example extends React.Component {
       <div>
         <input type="checkbox" checked={this.state.readOnly} onClick={this.toggleReadOnly.bind(this)}/> readOnly
         {/* start example */}
-        <table className="table table-striped">
-          <tbody>
-            <tr>
-              <td>string</td>
-              <td>
-                <EditableValue
-                  type="string"
-                  value={this.state.values.string}
-                  onChange={v => this.changeValue('string', v)}
-                  readOnly={this.state.readOnly}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>text</td>
-              <td>
-                <EditableValue
-                  type="text"
-                  value={this.state.values.text}
-                  onChange={v => this.changeValue('text', v)}
-                  readOnly={this.state.readOnly}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>url</td>
-              <td>
-                <EditableValue
-                  type="url"
-                  value={this.state.values.url}
-                  onChange={v => this.changeValue('url', v)}
-                  readOnly={this.state.readOnly}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>phone</td>
-              <td>
-                <EditableValue
-                  type="phone"
-                  value={this.state.values.phone}
-                  onChange={v => this.changeValue('phone', v)}
-                  readOnly={this.state.readOnly}
-                  option={{defaultCountry: 'CH'}}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>number</td>
-              <td>
-                <EditableValue
-                  type="number"
-                  value={this.state.values.number}
-                  onChange={v => this.changeValue('number', v)}
-                  readOnly={this.state.readOnly}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>boolean</td>
-              <td>
-                <EditableValue
-                  type="boolean"
-                  value={this.state.values.boolean}
-                  onChange={v => this.changeValue('boolean', v)}
-                  readOnly={this.state.readOnly}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>single-select</td>
-              <td>
-                <EditableValue
-                  type="single-select"
-                  options={{
-                    store: [
-                      {key: 1, display: 'One'},
-                      {key: 2, display: 'Two'},
-                      {key: 3, display: 'Three'}
-                    ]
-                  }}
-                  value={this.state.values.singleSelect}
-                  onChange={v => this.changeValue('singleSelect', v)}
-                  readOnly={this.state.readOnly}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>multi-select</td>
-              <td>
-                <EditableValue
-                  type="multi-select"
-                  value={this.state.values.multiSelect}
-                  onChange={v => this.changeValue('multiSelect', v)}
-                  options={{
-                    store: [{key: 'a', display: 'One'}, {key: 'b', display: 'Two'},
-                      {key: 'c', display: 'Three'}, {key: 'd', display: 'Four'}]
-                  }}
-                  readOnly={this.state.readOnly}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>remote</td>
-              <td>
-                <EditableValue
-                  type="remote"
-                  onChange={v => this.changeValue('remote', v)}
-                  readOnly={this.state.readOnly}
-                  value={this.state.values.remote}
-                  options={{
-                    fetchOptions: this.fetchRemoteOptions,
-                    searchPromptText: 'Type to search',
-                    clearValueText: 'Clear value',
-                    options: this.state.remoteOptions,
-                    moreOptionsAvailable: true,
-                    moreOptionsAvailableText: 'More Options available'
-                  }}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>multi-remote</td>
-              <td>
-                <EditableValue
-                  type="multi-remote"
-                  onChange={v => this.changeValue('multiRemote', v)}
-                  readOnly={this.state.readOnly}
-                  value={this.state.values.multiRemote}
-                  options={{
-                    options: this.state.multiRemoteOptions,
-                    fetchOptions: this.fetchMultiRemoteOptions,
-                    searchPromptText: 'Type to search',
-                    clearAllText: 'Clear all values',
-                    moreOptionsAvailable: true,
-                    moreOptionsAvailableText: 'More Options available'
-                  }}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>date</td>
-              <td>
-                <EditableValue
-                  type="date"
-                  value={this.state.values.date}
-                  onChange={v => this.changeValue('date', v)}
-                  readOnly={this.state.readOnly}
-                  options={{placeholderText: 'Pick a date', flatpickrOptions: {weekNumbers: true}}}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>date-range</td>
-              <td>
-                <EditableValue
-                  type="date-range"
-                  value={{
-                    from: this.state.values.dateRangeFrom,
-                    to: this.state.values.dateRangeTo
-                  }}
-                  onChange={v => {
-                    this.changeValue('dateRangeFrom', v ? v.from : null)
-                    this.changeValue('dateRangeTo', v ? v.to : null)
-                  }
-                  }
-                  readOnly={this.state.readOnly}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>datetime</td>
-              <td>
-                <EditableValue
-                  type="datetime"
-                  value={this.state.values.datetime}
-                  onChange={v => this.changeValue('datetime', v)}
-                  readOnly={this.state.readOnly}
-                  options={{placeholderText: 'Pick a date time'}}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>document</td>
-              <td>
-                <EditableValue
-                  type="document"
-                  onChange={v => this.changeValue('document', v)}
-                  value={this.state.values.document}
-                  readOnly={this.state.readOnly}
-                  options={{
-                    uploadText: 'drag & drop',
-                    uploadingText: 'uploading...',
-                    upload: this.handleMockFileUpload
-                  }}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>html</td>
-              <td>
-                <EditableValue
-                  type="html"
-                  value={this.state.values.html}
-                  onChange={v => this.changeValue('html', v)}
-                  readOnly={this.state.readOnly}
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <EditableValue
+          id="string"
+          label="String"
+          mandatory
+          onChange={v => this.changeValue('string', v)}
+          readOnly={this.state.readOnly}
+          type="string"
+          value={this.state.values.string}
+        />
+        <EditableValue
+          id="text"
+          label="Text"
+          onChange={v => this.changeValue('text', v)}
+          readOnly={this.state.readOnly}
+          type="text"
+          value={this.state.values.text}
+        />
+        <EditableValue
+          id="url"
+          label="Url"
+          onChange={v => this.changeValue('url', v)}
+          readOnly={this.state.readOnly}
+          type="url"
+          value={this.state.values.url}
+        />
+        <EditableValue
+          id="phone"
+          label="Phone"
+          onChange={v => this.changeValue('phone', v)}
+          option={{defaultCountry: 'CH'}}
+          readOnly={this.state.readOnly}
+          type="phone"
+          value={this.state.values.phone}
+        />
+        <EditableValue
+          id="number"
+          label="Number"
+          onChange={v => this.changeValue('number', v)}
+          readOnly={this.state.readOnly}
+          type="number"
+          value={this.state.values.number}
+        />
+        <EditableValue
+          id="boolean"
+          label="Boolean"
+          onChange={v => this.changeValue('boolean', v)}
+          readOnly={this.state.readOnly}
+          type="boolean"
+          value={this.state.values.boolean}
+        />
+        <EditableValue
+          id="single-select"
+          label="Single select"
+          onChange={v => this.changeValue('singleSelect', v)}
+          options={{
+            store: [
+              {key: 1, display: 'One'},
+              {key: 2, display: 'Two'},
+              {key: 3, display: 'Three'}
+            ]
+          }}
+          readOnly={this.state.readOnly}
+          type="single-select"
+          value={this.state.values.singleSelect}
+        />
+        <EditableValue
+          id="multi-select"
+          label="Multi select"
+          onChange={v => this.changeValue('multiSelect', v)}
+          options={{
+            store: [{key: 'a', display: 'One'}, {key: 'b', display: 'Two'},
+              {key: 'c', display: 'Three'}, {key: 'd', display: 'Four'}]
+          }}
+          readOnly={this.state.readOnly}
+          type="multi-select"
+          value={this.state.values.multiSelect}
+        />
+        <EditableValue
+          id="remote"
+          label="Remote"
+          onChange={v => this.changeValue('remote', v)}
+          options={{
+            fetchOptions: this.fetchRemoteOptions,
+            searchPromptText: 'Type to search',
+            clearValueText: 'Clear value',
+            options: this.state.remoteOptions,
+            moreOptionsAvailable: true,
+            moreOptionsAvailableText: 'More Options available'
+          }}
+          readOnly={this.state.readOnly}
+          type="remote"
+          value={this.state.values.remote}
+        />
+        <EditableValue
+          id="multi-remote"
+          label="Multi remote"
+          onChange={v => this.changeValue('multiRemote', v)}
+          options={{
+            options: this.state.multiRemoteOptions,
+            fetchOptions: this.fetchMultiRemoteOptions,
+            searchPromptText: 'Type to search',
+            clearAllText: 'Clear all values',
+            moreOptionsAvailable: true,
+            moreOptionsAvailableText: 'More Options available'
+          }}
+          readOnly={this.state.readOnly}
+          type="multi-remote"
+          value={this.state.values.multiRemote}
+        />
+        <EditableValue
+          id="date"
+          label="Date"
+          onChange={v => this.changeValue('date', v)}
+          options={{flatpickrOptions: {weekNumbers: true}}}
+          readOnly={this.state.readOnly}
+          type="date"
+          value={this.state.values.date}
+        />
+        <EditableValue
+          id="date-range"
+          label="Date range"
+          onChange={v => {
+            this.changeValue('dateRangeFrom', v ? v.from : null)
+            this.changeValue('dateRangeTo', v ? v.to : null)
+          }}
+          readOnly={this.state.readOnly}
+          type="date-range"
+          value={{
+            from: this.state.values.dateRangeFrom,
+            to: this.state.values.dateRangeTo
+          }}
+        />
+        <EditableValue
+          id="datetime"
+          label="Datetime"
+          onChange={v => this.changeValue('datetime', v)}
+          readOnly={this.state.readOnly}
+          type="datetime"
+          value={this.state.values.datetime}
+        />
+        <EditableValue
+          id="document"
+          label="Document"
+          onChange={v => this.changeValue('document', v)}
+          options={{
+            uploadText: 'drag & drop',
+            uploadingText: 'uploading...',
+            upload: this.handleMockFileUpload
+          }}
+          readOnly={this.state.readOnly}
+          type="document"
+          value={this.state.values.document}
+        />
+        <EditableValue
+          id="html"
+          label="Html"
+          onChange={v => this.changeValue('html', v)}
+          readOnly={this.state.readOnly}
+          type="html"
+          value={this.state.values.html}
+        />
         {/* end example */}
       </div>
     )

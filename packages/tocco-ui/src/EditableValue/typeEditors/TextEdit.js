@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import TextareaAutosize from 'react-autosize-textarea'
 
+import {StyledTextarea} from '../StyledEditableValue'
+
 const TextEdit = props => {
   const handleChange = e => {
     if (props.onChange) {
@@ -10,16 +12,17 @@ const TextEdit = props => {
   }
 
   return (
-    <TextareaAutosize
-      rows={2}
-      maxRows={20}
-      className="form-control"
-      name={props.name}
-      onChange={handleChange}
-      id={props.id}
-      value={props.value}
-      disabled={props.readOnly}
-    />
+    <StyledTextarea>
+      <TextareaAutosize
+        rows={2}
+        maxRows={20}
+        name={props.name}
+        onChange={handleChange}
+        id={props.id}
+        value={props.value}
+        disabled={props.readOnly}
+      />
+    </StyledTextarea>
   )
 }
 

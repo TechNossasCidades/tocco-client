@@ -88,7 +88,7 @@ const outline = 'none'
 const overlays = {
   disabled: {
     color: colors.base.paper,
-    opacity: 0.7
+    opacity: 0.4
   }
 }
 

@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import Icon from '../../Icon'
+import {
+  StyledCheckbox,
+  StyledCheckboxIcon
+} from './StyledBoolEdit'
+
 const BoolEdit = props => {
   const handleChange = e => {
     if (props.onChange) {
@@ -9,14 +15,23 @@ const BoolEdit = props => {
   }
 
   return (
-    <input
-      type="checkbox"
-      checked={props.value}
-      name={props.name}
-      onChange={handleChange}
-      id={props.id}
-      disabled={props.readOnly}
-    />
+    <React.Fragment>
+      <StyledCheckbox
+        checked={props.value}
+        name={props.name}
+        onChange={handleChange}
+        id={props.id}
+        disabled={props.readOnly}
+      />
+      <StyledCheckboxIcon
+        htmlFor={props.id}
+      >
+        <Icon
+          icon={props.value ? 'fa-check' : 'fa-times'}
+          position="prepend"
+        />
+      </StyledCheckboxIcon>
+    </React.Fragment>
   )
 }
 

@@ -15,6 +15,18 @@ import {
  * Use <Button> to trigger any actions. Choose look and ink according Material Design.
  */
 const Button = props => {
+  const bypassAttributes = (props, identifiers = ['data-', 'aria-']) => {
+    const bypass = {}
+    identifiers.forEach(identifier => {
+      Object.keys(props).forEach(key => {
+        if (key.startsWith(identifier) && props[key]) {
+          bypass[key] = props[key]
+        }
+      })
+    })
+    return bypass
+  }
+
   return (
     <StyledButton
       dense={props.dense}
@@ -26,6 +38,7 @@ const Button = props => {
       onClick={props.onClick}
       title={props.title}
       type={props.type}
+      {...bypassAttributes(props)}
     >
       {props.icon && <Icon
         dense={props.dense}

@@ -58,19 +58,19 @@ export default (type, value, onChange, options, id, events, readOnly = false) =>
     }
 
     return (
-      <div {...events}>
-        <Component
-          value={value}
-          onChange={v => {
-            blurValue = v
-            onChange(v)
-          }}
-          {...(_isEmpty(options) ? {} : {options})}
-          id={id}
-          readOnly={readOnly}
-          events={events}
-        />
-      </div>
+      /* TODO do I really need <div {...events}> as parent */
+      <Component
+        value={value}
+        onChange={v => {
+          blurValue = v
+          onChange(v)
+        }}
+        {...(_isEmpty(options) ? {} : {options})}
+        id={id}
+        readOnly={readOnly}
+        events={events}
+      />
+      /* </div> */
     )
   }
 

@@ -32,7 +32,7 @@ class DateEdit extends React.Component {
     const flatpickrOptions = {
       altFormat: momentJStoToFlatpickrFormat(this.getLocalizedAltFormat()),
       dateFormat: momentJStoToFlatpickrFormat(this.DATE_FORMAT),
-      allowInput: true,
+      allowInput: false,
       parseDate: this.parseDate,
       ...(this.props.options ? this.props.options.flatpickrOptions : {})
     }
@@ -56,7 +56,6 @@ DateEdit.propTypes = {
   value: PropTypes.string,
   readOnly: PropTypes.bool,
   options: PropTypes.shape({
-    placeholderText: PropTypes.string,
     flatpickrOptions: PropTypes.object
   }),
   events: PropTypes.shape({

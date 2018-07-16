@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import {StyledInput} from '../StyledEditableValue'
+
 const StringEdit = props => {
   const value = props.value || ''
 
@@ -11,9 +13,8 @@ const StringEdit = props => {
   }
 
   return (
-    <input
+    <StyledInput
       type="text"
-      className="form-control"
       name={props.name}
       value={value}
       onChange={handleChange}

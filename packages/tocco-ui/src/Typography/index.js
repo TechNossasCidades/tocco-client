@@ -68,7 +68,8 @@ import {
   StyledTime,
   StyledU,
   StyledVar} from './StyledMisc'
-import Span, {StyledSpan} from './Typography'
+import {StyledSpan} from './StyledTypography'
+import Span from './Typography'
 import InjectFontRoboto from './Font'
 
 export {

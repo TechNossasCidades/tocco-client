@@ -6,7 +6,7 @@ import ErrorList from './ErrorList'
 describe('tocco-ui', () => {
   describe('FormField', () => {
     it('should render child components', () => {
-      const wrapper = shallow(<FormField><span id="content"/></FormField>)
+      const wrapper = shallow(<FormField><span htmlFor="content"/></FormField>)
       expect(wrapper.find('#content')).to.have.length(1)
     })
 

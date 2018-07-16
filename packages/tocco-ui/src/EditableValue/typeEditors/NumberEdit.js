@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import {StyledInput} from '../StyledEditableValue'
+
 const convertStringToNumber = stringValue => (
   !stringValue || isNaN(stringValue) ? null : Number(stringValue)
 )
@@ -13,14 +15,13 @@ const NumberEdit = props => {
   }
 
   return (
-    <input
-      type="number"
-      className="form-control"
-      name={props.name}
-      value={props.value}
-      onChange={handleChange}
-      id={props.id}
+    <StyledInput
       disabled={props.readOnly}
+      id={props.id}
+      name={props.name}
+      onChange={handleChange}
+      type="number"
+      value={props.value}
     />
   )
 }

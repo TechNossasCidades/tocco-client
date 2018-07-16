@@ -1,5 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
+// import '!style-loader!css-loader!react-select/dist/react-select.css'
+
 import TetherComponent from 'react-tether'
 
 /** from https://github.com/JedWatson/react-select/issues/810#issuecomment-250274937 **/
@@ -31,7 +33,6 @@ export default class TetheredSelectWrap extends Select {
           element: 'tocco-ui-theme tether-select'
         }}
       >
-        <div></div>
         {React.cloneElement(menu, {style: {position: 'static', width: selectWidth}})}
       </TetherComponent>
     )

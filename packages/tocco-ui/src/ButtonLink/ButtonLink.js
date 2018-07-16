@@ -25,6 +25,9 @@ const ButtonLink = props => {
       ink={props.ink}
       look={props.look}
       melt={props.buttonGroupMelt}
+      rel={props.rel}
+      tabIndex={props.tabIndex}
+      target={props.target}
       title={props.title}
     >
       {props.icon && <Icon dense={props.dense} icon={props.icon} position={props.iconPosition}/>}
@@ -83,6 +86,18 @@ ButtonLink.propTypes = {
    * Look of link according Material Design (button section). Default value is 'flat'.
    */
   look: lookPropTypes,
+  /**
+   *
+   */
+  rel: PropTypes.string,
+  /**
+   *
+   */
+  tabIndex: PropTypes.number,
+  /**
+   *
+   */
+  target: PropTypes.oneOf(['_blank', '_self']),
   /**
    * Describe link target in detail to instruct users. It is shown as popover on mouse over.
    */

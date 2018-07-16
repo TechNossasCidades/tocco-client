@@ -1,7 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {injectIntl, intlShape} from 'react-intl'
-import classNames from 'classnames'
+
+import Button from '../../Button'
+import {
+  StyledFlatpickerInputWrapper,
+  StyledInput,
+  StyledInputActions
+} from '../StyledEditableValue'
 
 class DateAbstract extends React.Component {
   Flatpickr = null
@@ -43,6 +49,7 @@ class DateAbstract extends React.Component {
     }
 
     this.flatpickr = new this.Flatpickr(this.wrapper, this.options)
+    // TODO remove next line but ensure correct typography
     this.flatpickr.calendarContainer.classList.add('tocco-ui-theme')
 
     if (this.props.initialized) {
@@ -103,38 +110,39 @@ class DateAbstract extends React.Component {
   }
 
   render() {
-    const spanClass = classNames('input-group', 'date-edit', {'hidden': this.props.readOnly})
-    const resetClass = classNames('reset', {'hidden': !this.hasValue()})
-
     return (
-      <span>
-        <span
-          className={spanClass}
-          ref={this.refMapper.bind(this)}
-          data-wrap
-          onBlur={this.handleOnBlur.bind(this)}
-        >
-          <span className="right-addon">
-            <input
-              {...(this.props.options ? {placeholder: this.props.options.placeholderText} : {})}
-              data-input
+      <div
+        ref={this.refMapper.bind(this)}
+        data-wrap
+        onBlur={this.handleOnBlur.bind(this)}
+      >
+        <StyledFlatpickerInputWrapper readOnly={this.props.readOnly}>
+          <input data-input />
+        </StyledFlatpickerInputWrapper>
+        {this.props.readOnly
+          && <StyledInput
+            disabled
+            value={this.flatpickr ? this.flatpickr.altInput.value : ''}
+          />
+        }
+        {!this.props.readOnly
+          && <StyledInputActions>
+            {this.hasValue()
+              && <Button
+                data-clear
+                icon="fa-times"
+                iconPosition="solely"
+              />
+            }
+            <Button
+              data-toggle
+              icon="fa-calendar"
+              iconPosition="solely"
+              onClick={this.handleToggleClick.bind(this)}
             />
-            <span className={resetClass} data-clear>×</span>
-          </span>
-          <span
-            data-toggle
-            className="input-group-addon"
-            onClick={this.handleToggleClick.bind(this)}
-          >
-            <i className="fa fa-calendar" aria-hidden="true"></i>
-          </span>
-        </span>
-        {this.props.readOnly && <input
-          className="form-control"
-          disabled
-          value={this.flatpickr ? this.flatpickr.altInput.value : ''}
-        />}
-      </span>
+          </StyledInputActions>
+        }
+      </div>
     )
   }
 }
@@ -145,7 +153,6 @@ DateAbstract.propTypes = {
   onChange: PropTypes.func,
   value: PropTypes.arrayOf(PropTypes.string),
   options: PropTypes.shape({
-    placeholderText: PropTypes.string,
     flatpickrOptions: PropTypes.object
   }),
   readOnly: PropTypes.bool,

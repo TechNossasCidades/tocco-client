@@ -21,15 +21,13 @@ const DateTimeEdit = props => {
   const handleChange = dates => props.onChange(atMostOne(dates))
 
   return (
-    <span>
-      <DateAbstract
-        value={[props.value]}
-        onChange={handleChange}
-        readOnly={props.readOnly}
-        options={{...props.options, flatpickrOptions}}
-        events={props.events}
-      />
-    </span>
+    <DateAbstract
+      value={[props.value]}
+      onChange={handleChange}
+      readOnly={props.readOnly}
+      options={{...props.options, flatpickrOptions}}
+      events={props.events}
+    />
   )
 }
 
@@ -39,7 +37,6 @@ DateTimeEdit.propTypes = {
   value: PropTypes.string,
   readOnly: PropTypes.bool,
   options: PropTypes.shape({
-    placeholderText: PropTypes.string,
     flatpickrOptions: PropTypes.object
   }),
   events: PropTypes.shape({

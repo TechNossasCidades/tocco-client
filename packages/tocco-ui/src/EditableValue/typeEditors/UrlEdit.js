@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import ButtonLink from '../../ButtonLink'
+import {
+  StyledInput,
+  StyledInputActions
+} from '../StyledEditableValue'
+
 const StringEdit = props => {
   const value = props.value || ''
 
@@ -21,22 +27,29 @@ const StringEdit = props => {
   }
 
   return (
-    <div className={value ? 'input-group' : ''}>
-      <input
+    <React.Fragment>
+      <StyledInput
         type="url"
-        className="form-control"
         name={props.name}
         value={value}
         onChange={handleChange}
         id={props.id}
         disabled={props.readOnly}
       />
-      {value && <span className="input-group-addon">
-        <a tabIndex="-1" href={value} target="_blank" rel="noopener noreferrer">
-          <span className="fa fa-external-link"/>
-        </a>
-      </span>}
-    </div>
+      {value
+        && !props.readOnly
+        && <StyledInputActions>
+          <ButtonLink
+            href={value}
+            icon="fa-external-link"
+            iconPosition="solely"
+            rel="noopener noreferrer"
+            tabIndex="-1"
+            target="_blank"
+          />
+        </StyledInputActions>
+      }
+    </React.Fragment>
   )
 }
 

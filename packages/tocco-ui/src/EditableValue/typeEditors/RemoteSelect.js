@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import TetheredSelectWrap from './TetherSelectWrap'
+import {StyledSelect} from '../StyledEditableValue'
 
 class RemoteSelect extends React.Component {
   onValueClick = v => {
@@ -22,8 +23,9 @@ class RemoteSelect extends React.Component {
 
   render() {
     return (
-      <span tabIndex="-1" id={this.props.id} onFocus={this.focusSelect}>
+      <StyledSelect tabIndex="-1" id={this.props.id} onFocus={this.focusSelect}>
         <TetheredSelectWrap
+          autosize={false}
           valueKey="key"
           labelKey="display"
           loadingPlaceholder="Laden"
@@ -45,7 +47,7 @@ class RemoteSelect extends React.Component {
           disabled={this.props.readOnly}
           ref={select => { this.selectComponent = select }}
         />
-      </span>
+      </StyledSelect>
     )
   }
 }

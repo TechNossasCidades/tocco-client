@@ -3,6 +3,8 @@ import React from 'react'
 import TetheredSelectWrap from './TetherSelectWrap'
 import _isEmpty from 'lodash/isEmpty'
 
+import {StyledSelect} from '../StyledEditableValue'
+
 const MultiSelect = props => {
   const handleChange = value => {
     props.onChange(value)
@@ -14,8 +16,9 @@ const MultiSelect = props => {
   const focusSelect = () => selectComponent.focus()
 
   return (
-    <span tabIndex="-1" id={props.id} onFocus={focusSelect}>
+    <StyledSelect tabIndex="-1" id={props.id} onFocus={focusSelect}>
       <TetheredSelectWrap
+        autosize={false}
         multi
         valueKey="key"
         labelKey="display"
@@ -28,7 +31,7 @@ const MultiSelect = props => {
         disabled={props.readOnly}
         ref={select => { selectComponent = select }}
       />
-    </span>
+    </StyledSelect>
   )
 }
 

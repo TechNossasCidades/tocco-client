@@ -5,6 +5,8 @@ import {momentJStoToFlatpickrFormat} from '../utils'
 import moment from 'moment'
 import {injectIntl, intlShape} from 'react-intl'
 
+// TODO clear button has no effect
+
 const DateRangeEdit = props => {
   const flatpickrOptions = {
     mode: 'range',
@@ -50,7 +52,6 @@ DateRangeEdit.propTypes = {
   ]),
   readOnly: PropTypes.bool,
   options: PropTypes.shape({
-    placeholderText: PropTypes.string,
     flatpickrOptions: PropTypes.object
   }),
   events: PropTypes.shape({

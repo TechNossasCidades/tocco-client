@@ -1,57 +1,53 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import classNames from 'classnames'
+
 import ErrorList from './ErrorList'
+import {
+  StyledFormField,
+  StyledHelp
+} from './StyledFormField'
 
 const FormField = props => {
   if (props.hidden) {
     return null
   }
 
-  const fromGroupClass = classNames(
-    'form-group',
-    props.className,
-    {
-      'mandatory': props.mandatory,
-      'dirty': props.dirty,
-      'has-error': props.error && props.touched
-    }
-  )
+  const helpText = (props.mandatory) ? `* ${props.label} ${props.mandatoryTitle}` : ''
 
-  const labelClass = classNames(
-    'col-sm-3',
-    'control-label',
-    {
-      'sr-only': !props.label
-    })
-
-  const labelAlt = `${props.label}${props.mandatory ? `, ${props.mandatoryTitle}` : ''}`
-
-  const editableValueWrapperClass = classNames({
-    'col-sm-9': props.label,
-    'col-sm-12': !props.label
-  })
+  const {
+    children,
+    dirty,
+    touched,
+    error,
+    label,
+    id,
+    mandatory
+  } = props
 
   return (
-    <div className={fromGroupClass}>
-      <label className={labelClass} htmlFor={props.id} alt={labelAlt} title={labelAlt}>
-        {props.label}
-      </label>
-      <div className={editableValueWrapperClass}>
-        {props.children}
-        {props.touched && props.error && <ErrorList error={props.error}/>}
-      </div>
-    </div>
+    <StyledFormField>
+      {React.Children.map(children, child => {
+        return React.cloneElement(child, {
+          hasError: touched && error,
+          id: id,
+          isDirty: dirty,
+          label: label,
+          mandatory: mandatory
+        })
+      })}
+      {helpText && <StyledHelp error={error}>{helpText}</StyledHelp>}
+      {touched && error && <ErrorList error={error}/>}
+    </StyledFormField>
   )
 }
 
 FormField.defaultProps = {
-  mandatoryTitle: 'mandatory'
+  mandatoryTitle: 'is required'
 }
 
 FormField.propTypes = {
   id: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.string.required,
   mandatory: PropTypes.bool,
   mandatoryTitle: PropTypes.string,
   children: PropTypes.node,
